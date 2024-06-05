@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flaskdemo
-        image: giorgio0603/jenkins-flask:1
+        image: devopswithsam/jenkins-flask:7
         resources:
           limits:
             memory: "128Mi"
