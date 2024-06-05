@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskdemo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flaskdemo
+  template:
+    metadata:
+      labels:
+        app: flaskdemo
+    spec:
+      containers:
+      - name: flaskdemo
+        image: giorgio0603/jenkins-flask:1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+spec:
+  type: NodePort
+  selector:
+    app: flaskdemo
+  ports:
+  - port: 80
+    targetPort: 5000
+    nodePort: 30007
+
